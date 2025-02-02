@@ -1,4 +1,4 @@
-# scrna_container
+# scrna-container
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
 
@@ -6,7 +6,7 @@ For consistency across locations, we have built out a quick RStudio container. T
 
 ## Docker command for local usage
 ```bash
-docker run --rm -p 8787:8787 -e PASSWORD=$password -v $localdir:/home/rstudio alemenze/scrna_container
+docker run --rm -p 8787:8787 -e PASSWORD=$password -v $localdir:/home/rstudio alemenze/scrna-container
 ```
 Change the password and localdir to what you wish to use for your settings. 
 To then load the instance, navigate to [localhost:8787](http://localhost:8787)
@@ -23,7 +23,7 @@ docker run \ #starts docker and tells it to run
     -p 8787:8787 \ #defines the port you wish to use. the image uses an internal port of 8787, but the first value you can change to whatever local port you have free and wish to use. 
     -e PASSWORD=$password \ #recent updates demand adding a password. replace $password with whatever you wish- I usually just use "-e PASSWORD=test" since its easy
     -v $localdir:/home/rstudio \ #defines your local directory that will be mounted in the image. the default image directory is /home/rstudio, so we need to replace the $localdir with the path to your local directory with the data. 
-    alemenze/scrna_container #calls the specific dcoker image we have here!
+    alemenze/scrna-container #calls the specific dcoker image we have here!
 ```
 
 ## Singularity command
@@ -41,7 +41,7 @@ This is now also updated to send a slack message with the tunnel information to 
 #### Run just a script
 This will run it in the current working directory off a file called "Processing.Rmd". 
 ```bash
-singularity exec docker://alemenze/scrna_container Rscript -e "rmarkdown::render('Processing.Rmd')"
+singularity exec docker://alemenze/scrna-container Rscript -e "rmarkdown::render('Processing.Rmd')"
 ```
 
 #### CLI interactive singularity command
@@ -52,7 +52,7 @@ srun -p 'p_lemenzad' --nodes=1 --time=03:00:00 --ntasks=1 --cpus-per-task=40 --m
 
 I have not tested the interactivity, theoretically it will work in an CLI capacity but any sort of Rstudio will be dependent on your HPC structure. 
 ```bash
-singularity shell --cleanenv docker://alemenze/scrna_container
+singularity shell --cleanenv docker://alemenze/scrna-container
 ```
 This has been roughly tested with singularity 3.5.2, but depending upon your install for singularity it may throw a user issue. 
 Once in the interactive shell you can run things as you normally would for CLI access.

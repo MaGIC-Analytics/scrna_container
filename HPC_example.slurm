@@ -94,7 +94,7 @@ Slurm Job ID:
    ${SLURM_JOB_ID}
 "
 
-singularity exec --cleanenv -H $PWD:/home/rstudio docker://alemenze/scrna_container \
+singularity exec --cleanenv -H $PWD:/home/rstudio docker://alemenze/scrna-container \
     /usr/lib/rstudio-server/bin/rserver --server-user ${USER} --www-port ${PORT} \
             --auth-none=0 \
             --auth-pam-helper-path=pam-helper \
