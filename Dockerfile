@@ -28,3 +28,6 @@ RUN R -e "remotes::install_github(c('satijalab/seurat-wrappers', \
     'hypercompetent/colorway', 'powellgenomicslab/DropletQC', \
     'samuel-marsh/scCustomize', 'chris-mcginnis-ucsf/DoubletFinder'))"
 
+RUN R -e "BiocManager::install('TFBSTools')"
+RUN R -e "remotes::install_github('satijalab/azimuth', ref = 'master')"
+
